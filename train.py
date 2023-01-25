@@ -13,7 +13,7 @@ y_test = np.genfromtxt("data/test_labels.csv")
 depth = 2
 clf = RandomForestClassifier(max_depth=depth)
 clf.fit(X_train, y_train)
-
+depth = 5
 acc = clf.score(X_test, y_test)
 print(acc)
 with open("metrics.txt", "w") as outfile:
