@@ -17,7 +17,7 @@ clf.fit(X_train, y_train)
 acc = clf.score(X_test, y_test)
 print(acc)
 with open("metrics.txt", "w") as outfile:
-    outfile.write("Accuracy: " + str(acc) + "\n")
+    outfile.write("Accuracy is: " + str(acc) + "\n")
 
 # Plot it
 disp = ConfusionMatrixDisplay.from_estimator(
