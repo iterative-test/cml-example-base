@@ -1,6 +1,7 @@
 name: model-training
 on: [push]
 jobs:
+  permissions: write-all
   run:
     runs-on: ubuntu-latest
     steps:
