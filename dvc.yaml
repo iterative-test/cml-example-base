@@ -1,0 +1,10 @@
+stages:
+  train:
+    cmd: train.py
+    deps:
+    - data
+    params:
+    - train.depth
+    metrics:
+    - eval/metrics.json:
+        cache: false
