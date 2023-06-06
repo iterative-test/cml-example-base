@@ -31,4 +31,4 @@ with Live(save_dvc_exp=True) as live:
         clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
     )
     plt.savefig("plot.png")
-    live.log_sklearn_plot("confusion_matrix", x_test, y_test)
+    live.log_sklearn_plot("confusion_matrix", X_test, y_test)
