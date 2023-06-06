@@ -36,3 +36,6 @@ with Live(save_dvc_exp=True) as live:
     plt.savefig("plot.png")
     print("Logging confusion matrix")
     live.log_sklearn_plot("confusion_matrix", X_test, y_test)
+
+print("Done. Exiting.")
+    
