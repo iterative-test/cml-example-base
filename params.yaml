@@ -1,2 +1,2 @@
 train:
-  depth: 8,12,4
+  depth: '8'
