@@ -16,7 +16,7 @@ X_test = np.genfromtxt("data/test_features.csv")
 y_test = np.genfromtxt("data/test_labels.csv")
 
 print("starting experiment")
-with Live(save_dvc_exp=True) as live:
+with Live(save_dvc_exp=False) as live:
     print("logging params")
     live.log_params(params)
     # Fit a model
@@ -36,6 +36,7 @@ with Live(save_dvc_exp=True) as live:
     plt.savefig("plot.png")
     print("Logging confusion matrix")
     live.log_sklearn_plot("confusion_matrix", X_test, y_test)
+    print("Finished logging")
 
 print("Done. Exiting.")
     
