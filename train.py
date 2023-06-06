@@ -5,16 +5,19 @@ import numpy as np
 import yaml
 from dvclive import Live
 
-
+print("getting params")
 params = yaml.safe_load(open("params.yaml"))["train"]
 
+print("reading data")
 # Read in data
 X_train = np.genfromtxt("data/train_features.csv")
 y_train = np.genfromtxt("data/train_labels.csv")
 X_test = np.genfromtxt("data/test_features.csv")
 y_test = np.genfromtxt("data/test_labels.csv")
 
+print("starting experiment")
 with Live(save_dvc_exp=True) as live:
+    print("logging params")
     live.log_params(params)
     # Fit a model
     depth = params.get("depth")
@@ -31,4 +34,5 @@ with Live(save_dvc_exp=True) as live:
         clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
     )
     plt.savefig("plot.png")
-    # live.log_sklearn_plot("confusion_matrix", X_test, y_test)
+    print("Logging confusion matrix")
+    live.log_sklearn_plot("confusion_matrix", X_test, y_test)
