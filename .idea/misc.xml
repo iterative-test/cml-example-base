@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GhActionsToolbarSettings">
+    <option name="useCustomRepos" value="false" />
+  </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="gke_coherent-answer-347706_europe-west2-a_dev" />
+  </component>
+  <component name="KubernetesSettings">
+    <option name="getSpecFromCluster" value="true" />
+  </component>
+</project>
