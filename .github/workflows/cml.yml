@@ -1,33 +1,19 @@
-name: CML & DVC
+name: model-training
 on: [push]
 jobs:
-  train-and-report:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
       - uses: iterative/setup-cml@v1
-      - uses: iterative/setup-dvc@v1
       - name: Train model
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          dvc pull data
-          pip install -r requirements.txt
-          dvc repro
-      - name: Create CML report
-        run: |
-          # Compare metrics to main
-          git fetch --depth=1 origin main:main 
-          dvc metrics diff --show-md main >> report.md
-          # Plot training loss function diff
-          dvc plots diff \
-            --target loss.csv --show-vega main > vega.json
-          vl2png vega.json > plot.png
-          echo '![](./plot.png "Training Loss")' >> report.md
-          cml comment create report.md
-        env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          python train.py
+
+          cat metrics.txt >> report.md
+          echo "![](./plot.png)" >> report.md
+          cml comment create report.md
